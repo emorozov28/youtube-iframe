@@ -1,0 +1,67 @@
+@import '~normalize.css';
+@import 'variable';
+
+.video__wrap {
+    height: 265px;
+    width: 100%;
+    z-index: 10;
+    background-color: #e0e0e0;
+
+    .video-item {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .text-hidden {
+        position: absolute;
+        clip: rect(0 0 0 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+      }
+
+    iframe,
+    .video__img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        border: none;
+    }
+
+    .btn-video-play {
+        border: none;
+        background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Слой_1' focusable='false' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 546.1 384' style='enable-background:new 0 0 546.1 384;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%23FFFFFF;%7D .st1%7Bfill:%23F22A2A;%7D%0A%3C/style%3E%3Cg id='XMLID_1_'%3E%3Cg%3E%3Cpolygon class='st0' points='359.9,192.4 217.2,273.6 217.2,111.2 '/%3E%3Cpath class='st1' d='M534.7,60.1c11.4,42.9,11.4,132.3,11.4,132.3s0,89.4-11.4,132.3c-6.3,23.6-24.8,41.5-48.3,47.8 C443.8,384,273.1,384,273.1,384s-170.8,0-213.4-11.5c-23.5-6.3-42-24.2-48.3-47.8C0,281.8,0,192.4,0,192.4s0-89.4,11.4-132.3 c6.3-23.7,24.8-42.3,48.3-48.6C102.3,0,273.1,0,273.1,0s170.8,0,213.4,11.5C509.9,17.8,528.4,36.4,534.7,60.1z M217.2,273.6 l142.7-81.2l-142.7-81.2V273.6z'/%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 128px;
+        height: 90px;
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity .25s ease-in-out;
+
+        &:hover,
+        &:focus {
+            outline: none;
+            opacity: .8;
+            transition: opacity .25s ease-in-out;
+        }
+    }   
+
+    .video-caption {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        font-size: 16px;
+        color: #fff;
+        font-weight: 700;
+        font-family: sans-serif;
+    }
+
+}
