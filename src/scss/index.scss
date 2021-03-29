@@ -1,6 +1,3 @@
-@import '~normalize.css';
-@import 'variable';
-
 .video__wrap {
     height: 265px;
     width: 100%;
@@ -11,6 +8,8 @@
         position: relative;
         width: 100%;
         height: 100%;
+        background-size: cover;
+        background-position: center;
     }
 
     .text-hidden {
@@ -30,7 +29,7 @@
         border: none;
     }
 
-    .btn-video-play {
+    .video-play {
         border: none;
         background-color: transparent;
         background-repeat: no-repeat;

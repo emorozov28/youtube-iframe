@@ -4,14 +4,11 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
-const fileName = ext => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
+const fileName = ext => isDev ? `[name].${ext}` : `[name].${ext}`;
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -20,7 +17,7 @@ module.exports = {
         app: './index.js'
     },
     output: {
-        filename: `js/${fileName('js')}`,
+        filename: `js/lazyYouTubeLoad.js`,
         path: path.resolve(__dirname, 'dist'),
         publicPath: ''
     },
@@ -32,49 +29,46 @@ module.exports = {
         hot: true,
         port: 8080,
     },
-    optimization: optimization(),
     plugins: [
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HTMLWebpackPlugin({
+            hash: false,
             template: path.resolve(__dirname, 'src/index.html'),
             filename: 'index.html',
         }),
         new MiniCssExtractPlugin({
-            filename: `css/${fileName('css')}`
+            filename: `css/lazyYouTubeLoad.css`
         }),
-        new ImageminPlugin({
-            test: /\.(?:|gif|png|jpg|jpeg|svg)$/,
-            disable: isDev,
-            pngquant: {
-                quality: '80-85'
-            },
-            jpegtran: {
-                quality: '80-85'
-            }
-        }),
-        // new CopyWebpackPlugin({
-        //    patterns: [{
-        //       from: path.resolve(__dirname, 'src/pages'),
-        //        to: path.resolve(__dirname, 'dist')
-        //    }]
-        // })
+        new CopyWebpackPlugin({
+            patterns: [{
+               from: path.resolve(__dirname, 'src/img'),
+                to: path.resolve(__dirname, 'dist/img')
+            }]
+         })
     ],
     devtool: isProd ? false : 'source-map',
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.html$/i,
-                loader: 'html-loader'
+                loader: 'html-loader',
+                options: {
+                    minimize: {
+                        removeComments: false,
+                        collapseWhitespace: false,
+                    },
+                },
             },
             {
                 test: /\.css$/i,
                 use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: isDev,
-                            publicPath: '/'
-                        }
-                    },
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        hmr: isDev,
+                        publicPath: '/'
+                    }
+                },
                     'css-loader',
                 ],
             },
@@ -109,20 +103,3 @@ module.exports = {
         ]
     }
 }
-
-function optimization() {
-    const configObj = {
-        splitChunks: {
-            chunks: 'all' // разделение кода js
-        }
-    };
-
-    if (isProd) {
-        configObj.minimizer = [
-            new OptimizeCssAssetWebpackPlugin(),
-            new TerserWebpackPlugin()
-        ];
-    }
-
-    return configObj;
-};

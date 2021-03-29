@@ -1,18 +1,74 @@
-class LazyYouTube {
+export default class LazyYouTubeLoad {
 
-    constructor(selector) {
-        this.selector = document.querySelectorAll(selector);
+    constructor({
+            selector,
+            button = null,
+            bgImage = true,
+            qualityBg = 'hqdefault' }) {
 
-        this.imgSrc = [];
+        this.selector = selector,
+        this.qualityBg = qualityBg;
+        this.button = button;
+        this.bgImage = bgImage;
+
         this.captionText = [];
 
-        this.buttonItem = false;
-        this.buttonItemContent = false;
-        this.buttonItemClasses = false;
-
-
-        this.isButton();
         this.init();
+    }
+
+    init() {
+
+        const selector = document.querySelectorAll(this.selector);
+
+        if (selector && selector.length === 0) {
+            throw new Error(`Selector "${this.selector}" not found`);
+        }
+
+        selector.forEach((el) => {
+            const videoHref = el.getAttribute('data-video-link');
+            const deletedLength = 'https://youtu.be/'.length;
+            const videoId = videoHref.substring(deletedLength, videoHref.length);
+
+            el.querySelector('.video-play').innerHTML = this.button;
+
+            this.isBgImage(el, videoId)
+
+            el.addEventListener('click', (e) => {
+
+                el.querySelector('.video-caption') ?
+                    this.captionText.push(el.querySelector('.video-caption').textContent) :
+                    this.captionText.push(null);
+
+                selector.forEach(item => {
+
+                    if (item.querySelector('iframe')) {
+                        item.querySelector('iframe').remove();
+
+                        const captionText = this.captionText[this.captionText.length - 2];
+
+                        const showCaption = () => {
+                            if (captionText !== null) {
+                                return `<span class="video-caption">${this.captionText[this.captionText.length - 2]}</span>`
+                            }
+
+                            return '';
+                        }
+
+                        const DOMElement = `
+                            <button class="btn-video-play video-play">${this.button}</button>
+                            ${showCaption()}
+                        `;
+                        item.innerHTML = DOMElement;
+                    }
+                });
+
+                e.preventDefault();
+                const iframe = this.createIframe(videoId, 1);
+                el.appendChild(iframe);
+                el.querySelector('.video-play') ? el.querySelector('.video-play').remove() : null;
+                el.querySelector('.video-caption') ? el.querySelector('.video-caption').remove() : null;
+            });
+        });
     }
 
     generateUrl(id, autoplay) {
@@ -28,78 +84,14 @@ class LazyYouTube {
         return iframe;
     }
 
-    isButton() {
-        this.selector.forEach(buton => {
-            buton.querySelectorAll('.video-play').forEach(el => {
-                this.buttonItem = el;
-                this.buttonItemContent = this.buttonItem.innerHTML;
-                this.buttonItemClasses = this.buttonItem.className;
-            });
-        });
-    }
+    isBgImage(element, videoId) {
 
-    init() {
-        if (!this.selector) {
-            throw new Error('Selector not found');
+        if (this.bgImage) {
+            const youtubeImgSrc = `https://i.ytimg.com/vi/${videoId}/${this.qualityBg}.jpg`;
+            console.log(youtubeImgSrc)
+            element.style.backgroundImage = `url(${youtubeImgSrc})`;
+        } else {
+            element.removeAttribute('style');
         }
-
-        this.selector.forEach((el) => {
-            const videoHref = el.getAttribute('data-video');
-            const deletedLength = 'https://youtu.be/'.length;
-            const videoId = videoHref.substring(deletedLength, videoHref.length);
-            const img = el.querySelector('.video-img');
-
-            if (!img.hasAttribute('src')) {
-                const youtubeImgSrc = 'https://i.ytimg.com/vi/' + videoId + '/maxresdefault.jpg';
-                img.setAttribute('src', youtubeImgSrc);
-            }
-
-            el.addEventListener('click', (e) => {
-                this.imgSrc.push(el.querySelector('img').getAttribute('src'));
-
-                el.querySelector('.video-caption') ?
-                this.captionText.push(el.querySelector('.video-caption').textContent) :
-                this.captionText.push(null);
-
-                this.selector.forEach(item => {
-
-                    if (item.querySelector('iframe')) {
-                        item.querySelector('iframe').remove();
-
-                        const showCaption = () => {
-                            if (this.captionText[this.captionText.length - 2] !== null) {
-                                return `<span class="video-caption">${this.captionText[this.captionText.length - 2]}</span>`
-                            }
-
-                            return '';
-                        }
-
-                        const showButton = () => {
-                            if (this.buttonItem !== false) {
-                                return `<button class="${this.buttonItemClasses}">${this.buttonItemContent}</button>`
-                            }
-
-                            return '';
-                        }
-
-                        const DOMElement = `
-                            <img src="${this.imgSrc[this.imgSrc.length - 2]}" alt="video" class="video__img video-img">
-                            ${showButton()}
-                            ${showCaption()}
-                        `;
-                        item.innerHTML = DOMElement;
-                    }
-                });
-
-                e.preventDefault();
-                const iframe = this.createIframe(videoId, 1);
-                el.querySelector('.video-img') ? el.querySelector('.video-img').remove() : null;
-                el.appendChild(iframe);
-                el.querySelector('.video-play') ? el.querySelector('.video-play').remove() : null;
-                el.querySelector('.video-caption') ? el.querySelector('.video-caption').remove() : null;
-            });
-        });
     }
 }
-
-const lazyYouTube = new LazyYouTube('.video-item');
