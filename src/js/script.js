@@ -48,7 +48,7 @@ export default class LazyYouTubeLoad {
 
                         const showCaption = () => {
                             if (captionText !== null) {
-                                return `<span class="video-caption">${this.captionText[this.captionText.length - 2]}</span>`
+                                return `<span class="video-caption">${captionText}</span>`
                             }
 
                             return '';
