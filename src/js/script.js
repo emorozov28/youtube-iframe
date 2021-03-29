@@ -88,7 +88,6 @@ export default class LazyYouTubeLoad {
 
         if (this.bgImage) {
             const youtubeImgSrc = `https://i.ytimg.com/vi/${videoId}/${this.qualityBg}.jpg`;
-            console.log(youtubeImgSrc)
             element.style.backgroundImage = `url(${youtubeImgSrc})`;
         } else {
             element.removeAttribute('style');
