@@ -4,7 +4,9 @@ Lazy-load YouTube Iframe
 ```
 <link rel="stylesheet" href="lazyYouTubeLoad.css">
 
-import LazyYouTubeLoad from './lazyYouTubeLoad.js';
+<script src="js/app.js" type="module"></script>
+
+import LazyYouTubeLoad from './LazyYouTubeLoad.js';
 
 const youTubeButton = `
     <span class="text-hidden">play video</span>

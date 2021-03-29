@@ -17,7 +17,7 @@ module.exports = {
         app: './index.js'
     },
     output: {
-        filename: `js/lazyYouTubeLoad.js`,
+        filename: `js/LazyYouTubeLoad.js`,
         path: path.resolve(__dirname, 'dist'),
         publicPath: ''
     },
@@ -38,7 +38,7 @@ module.exports = {
             filename: 'index.html',
         }),
         new MiniCssExtractPlugin({
-            filename: `css/lazyYouTubeLoad.css`
+            filename: `css/LazyYouTubeLoad.css`
         }),
         new CopyWebpackPlugin({
             patterns: [{
