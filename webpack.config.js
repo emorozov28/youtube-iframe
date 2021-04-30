@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -8,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
-const fileName = ext => isDev ? `[name].${ext}` : `[name].${ext}`;
+const fileName = ext => isDev ? `[name].${ext}` : `lazy-load-youtube.min.${ext}`;
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -17,7 +16,7 @@ module.exports = {
         app: './index.js'
     },
     output: {
-        filename: `js/LazyYouTubeLoad.js`,
+        filename: `js/${fileName('js')}`,
         path: path.resolve(__dirname, 'dist'),
         publicPath: ''
     },
@@ -31,14 +30,12 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         new HTMLWebpackPlugin({
-            hash: false,
             template: path.resolve(__dirname, 'src/index.html'),
             filename: 'index.html',
         }),
         new MiniCssExtractPlugin({
-            filename: `css/LazyYouTubeLoad.css`
+            filename: `css/${fileName('css')}`
         }),
         new CopyWebpackPlugin({
             patterns: [{

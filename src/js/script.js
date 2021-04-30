@@ -1,16 +1,11 @@
-export default class LazyYouTubeLoad {
+class LazyYouTubeLoad {
 
-    constructor({
-            selector,
-            button = null,
-            bgImage = true,
-            qualityBg = 'hqdefault' }) {
+    constructor(selector, { button = null, bgImage = true, qualityBg = 'hqdefault' }) {
 
         this.selector = selector,
         this.qualityBg = qualityBg;
         this.button = button;
         this.bgImage = bgImage;
-
         this.captionText = [];
 
         this.init();
@@ -20,9 +15,7 @@ export default class LazyYouTubeLoad {
 
         const selector = document.querySelectorAll(this.selector);
 
-        if (selector && selector.length === 0) {
-            throw new Error(`Selector "${this.selector}" not found`);
-        }
+        if (selector && selector.length === 0) throw new Error(`Selector "${this.selector}" not found`);
 
         selector.forEach((el) => {
             const videoHref = el.getAttribute('data-video-link');
@@ -30,9 +23,7 @@ export default class LazyYouTubeLoad {
             const videoId = videoHref.substring(deletedLength, videoHref.length);
 
             el.querySelector('.video-play').innerHTML = this.button;
-
             this.isBgImage(el, videoId)
-
             el.addEventListener('click', (e) => {
 
                 el.querySelector('.video-caption') ?
@@ -47,10 +38,7 @@ export default class LazyYouTubeLoad {
                         const captionText = this.captionText[this.captionText.length - 2];
 
                         const showCaption = () => {
-                            if (captionText !== null) {
-                                return `<span class="video-caption">${captionText}</span>`
-                            }
-
+                            if (captionText !== null) return `<span class="video-caption">${captionText}</span>`;
                             return '';
                         }
 
@@ -65,6 +53,7 @@ export default class LazyYouTubeLoad {
                 e.preventDefault();
                 const iframe = this.createIframe(videoId, 1);
                 el.appendChild(iframe);
+
                 el.querySelector('.video-play') ? el.querySelector('.video-play').remove() : null;
                 el.querySelector('.video-caption') ? el.querySelector('.video-caption').remove() : null;
             });
