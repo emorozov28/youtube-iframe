@@ -32,7 +32,7 @@ JavaScript-библиотека для отложенной загрузки в�
 Для начала работы плагина скопируйте код ниже и добавьте его в ваш проект
 ```javascript
 
-const lazyYouTubeLoad = new LazyYouTubeLoad();
+const lazyYouTubeLoad = new LazyYouTubeLoad('.video-item');
 ```
 
 ## Параметры
@@ -52,7 +52,7 @@ const youTubeButton = `your code`;
 
 `default value - true`
 ```javascript
-const lazyYouTubeLoad = new LazyYouTubeLoad({
+const lazyYouTubeLoad = new LazyYouTubeLoad('.video-item', {
     bgImage: true
 });
 ```
