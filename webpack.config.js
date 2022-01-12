@@ -38,7 +38,7 @@ module.exports = () => ({
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
-      filename: 'index.html',
+      filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
       filename: `${fileName('css')}`
@@ -56,11 +56,6 @@ module.exports = () => ({
       {
         test: /\.html$/i,
         loader: 'html-loader',
-        options: {
-          minimize: false,
-          // removeComments: false,
-          // collapseWhitespace: false,
-        },
       },
       {
         test: /\.css$/i,
