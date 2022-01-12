@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Iframe</title>
+    <title>lazy-load-youtube</title>
     <meta name="title" content="YouTube Iframe" />
-
-    <meta name="description" content="YouTube Iframe">
-    <meta name="keywords" content="YouTube Iframe" />
-
+    <meta name="description" content="lazy-load-youtube - a library for lazy load of youtube videos on your page">
+    <meta name="keywords" content="YouTube Iframe, lazy-load, youtube, iframe, video, video-load, video-lazy" />
     <meta property="og:url" content="https://emorozov.top/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="YouTube Iframe" />
-    <meta property="og:description" content="YouTube Iframe" />
-
+    <meta property="og:title" content="lazy-load-youtube" />
+    <meta property="og:description" content="lazy-load-youtube - a library for lazy load of youtube videos on your page" />
+    <meta name="robots" content="index, follow">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
     <style>
         .container {
-            width: 960px;
-            margin: 100px auto;
+            max-width: 960px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            font-family: sans-serif;
         }
 
         ul {
@@ -32,73 +36,81 @@
             grid-template-columns: 1fr 1fr;
             grid-gap: 20px;
         }
+
+        .button {
+            border: 2px solid #ff6347;
+            background-color: transparent;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 40px auto 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            color: #161616;
+            cursor: pointer;
+            display: block;
+        }
+
+        .button:hover {
+            background-color: #ff6347;
+            color: #fff;
+        }
+
+        @media (max-width: 568px) {
+            .container {
+                margin: 0 auto;
+            }
+
+            ul {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="container">
+        <h1>Demo lazy-load-youtube</h1>
         <ul>
             <li>
                 <div class="video__wrap">
-                    <div class="video-item" data-video-link="https://youtu.be/Kt-tLuszKBA">
-                        <button class="video-play"></button>
+                    <div class="video__item js-video-item" data-video-link="https://youtu.be/Kt-tLuszKBA">
+                        <span class="video__caption js-video-caption">Awesome Mix</span>
+                        <button class="video__play js-video-play"></button>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="video__wrap">
-                    <div class="video-item" data-video-link="https://youtu.be/3p5gIRHiHTQ"
-                        style="background-image: url(img/intro.png);">
-                        <span class="video-caption">МУЗЫКА ДЛЯ ДУШИ RELAX THE BEST!!!</span>
-                        <button class="video-play"></button>
+                    <div class="video__item js-video-item" data-video-link="https://youtu.be/Gs069dndIYk">
+                        <button class="video__play js-video-play"></button>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="video__wrap">
-                    <div class="video-item" data-video-link="https://youtu.be/CwrVwstqNOs"
-                        >
-                        <span class="video-caption">4K</span>
-                        <button class="video-play"></button>
+                    <div class="video__item js-video-item" data-video-link="https://youtu.be/Y_plhk1FUQA?t=8269"
+                            style="background-image: url(img/intro.png);">
+                        <button class="video__play js-video-play"></button>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="video__wrap">
-                    <div class="video-item" data-video-link="https://youtu.be/Ax5YFnzhZL0">
-                        <button class="video-play"></button>
+                    <div class="video__item js-video-item" data-video-link="https://youtu.be/VXXSBFAFQc8">
+                        <button class="video__play js-video-play"></button>
                     </div>
                 </div>
             </li>
-            <li>
-                <div class="video__wrap">
-                    <div class="video-item" data-video-link="https://youtu.be/VXXSBFAFQc8">
-                        <span class="video-caption">2K</span>
-                        <button class="video-play"></button>
-                    </div>
-                </div>
-            </li>
-           
         </ul>
+        <button class="button js-video-stop">Stop Video</button>
 
     </div>
 
-    <script>
-        // const youTubeButton = `
-        //     <span class="text-hidden">play video</span>
-        //     <svg height="100%" viewBox="0 0 68 48" width="100%" fill="#000">
-        //         <path
-        //             d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z">
-        //         </path>
-        //         <path d="M 45,24 27,14 27,34" fill="#fff"></path>
-        //     </svg>
-        // `;
-
-        // const lazyYouTubeLoad = new LazyYouTubeLoad('.video-item', {
-        //     button: youTubeButton
-        // });
-    </script>
+   
+    <!-- <script>
+        new LazyLoadYouTube('.js-video-item');
+    </script> -->
 </body>
 
 </html>

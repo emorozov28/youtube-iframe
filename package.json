@@ -1,26 +1,52 @@
 {
-  "name": "emorozov",
+  "name": "lazy-load-youtube",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "lazy-load-youtube - a library for lazy load of youtube videos on your page",
+  "main": "dist/script.js",
+  "types": "dist/script.js",
+  "module": "dist/script.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
     "start": "cross-env NODE_ENV=development webpack serve --mode development"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emorozov28/youtube-iframe"
+  },
+  "keywords": [
+    "iframe"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 3 version"
+  ],
+  "author": "Eugene Morozov",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emorozov28/youtube-iframe/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build && npm run test"
+    }
+  },
+  "homepage": "https://github.com/emorozov28/youtube-iframe",
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.6.0",
     "autoprefixer": "^10.1.0",
-    "babel-loader": "^8.2.2",
-    "babel-polyfill": "^6.26.0",
+    "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
+    "eslint-webpack-plugin": "2.4.3",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.0",
+    "husky": "4.3.8",
+    "jsdoc-babel": "0.5.0",
+    "jsdoc-to-markdown": "6.0.1",
     "mini-css-extract-plugin": "^1.3.3",
     "node-sass": "^5.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
@@ -30,5 +56,6 @@
     "webpack": "^5.11.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "dependencies": {}
 }
