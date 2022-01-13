@@ -1,0 +1,8 @@
+node_modules/
+src/
+dist/img/
+dist/index.html
+package.json
+package-lock.json
+pastcss.config.js
+.DS_Store

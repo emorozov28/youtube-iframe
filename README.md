@@ -1,6 +1,9 @@
 # Lazy-load YouTube Iframe
 JavaScript library for lazy loading YouTube videos
 
+[![npm version](https://badge.fury.io/js/lazy-load-youtube.svg)](https://www.npmjs.com/package/lazy-load-youtube)
+[![](https://data.jsdelivr.com/v1/package/npm/lazy-load-youtube/badge)](https://www.jsdelivr.com/package/npm/lazy-load-youtube)
+
 ## DEMO
  [Demo](https://emorozov.top/app/youtube-iframe/ )
 
