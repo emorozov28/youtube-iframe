@@ -2,7 +2,9 @@ import './scss/index.scss';
 
 import LazyLoadYouTube from './js/script';
 
-// const lazyLoadYouTube = new LazyLoadYouTube('.js-video-item');
+// new LazyLoadYouTube('.js-video-item', {
+//     buttonName: 'Play'
+// });
 
 // lazyLoadYouTube.stopVideo();
 

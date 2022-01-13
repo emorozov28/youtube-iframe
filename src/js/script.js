@@ -10,12 +10,12 @@ export default class LazyLoadYouTube {
                   </path>
                   <path d="M 45,24 27,14 27,34" fill="#fff"></path>
               </svg>`,
-            bgImage: true,
+            imageBg: true,
             qualityBg: 'hqdefault'
         }
 
         this.options = { ...defaultOptions, ...options };
-        this.buttonName = this.options.buttonName ?? 'Play video';
+        this.buttonLabel = this.options.buttonLabel ?? 'Play video';
         this.selector = selector;
         this.stopVideoBtn = document.querySelectorAll('.js-video-stop');
         this.captionText = [];
@@ -41,7 +41,7 @@ export default class LazyLoadYouTube {
             const videoPlay = el.querySelector('.js-video-play');
 
             videoPlay.innerHTML = this.options.button !== false ? this.options.button : null;
-            videoPlay.setAttribute('aria-label', this.buttonName);
+            videoPlay.setAttribute('aria-label', this.buttonLabel);
             this.isBgImage(el, videoId)
             el.addEventListener('click', (e) => {
 
@@ -62,7 +62,7 @@ export default class LazyLoadYouTube {
                         }
 
                         const DOMElementButton = `
-                          <button class="video__play js-video-play" aria-label="${this.buttonName}">${this.options.button}</button>
+                          <button class="video__play js-video-play" aria-label="${this.buttonLabel}">${this.options.button}</button>
                           ${showCaption()}
                       `;
                         item.innerHTML = DOMElementButton;
@@ -83,7 +83,7 @@ export default class LazyLoadYouTube {
         if (!this.stopVideoBtn) {
             return;
         }
-        
+
         this.stopVideoBtn.forEach(item => {
             item.addEventListener('click', () => {
                 this.selector.forEach(item => {
@@ -103,7 +103,7 @@ export default class LazyLoadYouTube {
                         }
 
                         const DOMElementButton = `
-                        <button class="video__play js-video-play" aria-label="${this.buttonName}">${this.options.button}</button>
+                        <button class="video__play js-video-play" aria-label="${this.buttonLabel}">${this.options.button}</button>
                         ${showCaption()}
                     `;
                         item.innerHTML = DOMElementButton;
@@ -130,10 +130,10 @@ export default class LazyLoadYouTube {
     }
 
     isBgImage(element, videoId) {
-        if (!this.options.bgImage) {
+        if (!this.options.imageBg) {
             element.removeAttribute('style');
             return;
-        } else if (!element.hasAttribute('style') && this.options.bgImage) {
+        } else if (!element.hasAttribute('style') && this.options.imageBg) {
             const youtubeImgSrc = `https://i.ytimg.com/vi/${videoId}/${this.options.qualityBg}.jpg`;
             element.style.backgroundImage = `url(${youtubeImgSrc})`;
         }
