@@ -36,10 +36,9 @@ export default class LazyLoadYouTube {
 
         this.selector.forEach((el) => {
             const videoHref = el.getAttribute('data-video-link');
-            const deletedLength = 'https://youtu.be/'.length;
-            const videoId = videoHref.substring(deletedLength, videoHref.length);
+            const videoId = this.youtubeParser(videoHref);
             const videoPlay = el.querySelector('.js-video-play');
-
+            
             videoPlay.innerHTML = this.options.button !== false ? this.options.button : null;
             videoPlay.setAttribute('aria-label', this.buttonLabel);
             this.isBgImage(el, videoId)
@@ -112,6 +111,16 @@ export default class LazyLoadYouTube {
             })
         });
 
+    }
+
+    youtubeParser(url){
+        const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        console.log(match);
+        if (match !== null) {
+            return (match&&match[7].length==11)? match[7] : false;
+        }
+        return url;
     }
 
     generateUrl(id, autoplay) {
