@@ -38,9 +38,17 @@ You can also add a caption to a video by adding a tag with a` video__caption` cl
 ```
 
 ## Start
-To get started, download the library  and connect it to HTML and call it below, specifying the page as the parameter `.js-video-item`
-
+To get started, download the `npm i lazy-load-youtube` library and import it into your project
 Or import into your project
+#### css
+```javascript
+@import 'lazy-load-youtube/css';
+```
+```javascript
+or connect styles in js
+import 'lazy-load-youtube/css/index.css';
+```
+#### js
 ```javascript
 import LazyLoadYouTube from 'lazy-load-youtube';
 new LazyLoadYouTube('.js-video-item');
@@ -138,14 +146,16 @@ new LazyYouTubeLoad({
 ```
 
 ## Запуск
-Для начала работы скачайте библиотеку и подключите ее на страницу HTML и вызовете ниже, указав в качестве параметра `.js-video-item`
+Для начала работы скачайте библиотеку `npm i lazy-load-youtube` и импортируйте в ваш проект
+#### css
 ```javascript
-<script src="script.js"></script>
-<script>
-    new LazyLoadYouTube('.js-video-item');
-</script>
+@import 'lazy-load-youtube/css';
 ```
-Либо импортируйте в ваш проект
+```javascript
+или подключите стили в js
+import 'lazy-load-youtube/css/index.css';
+```
+#### js
 ```javascript
 import LazyLoadYouTube from 'lazy-load-youtube';
 new LazyLoadYouTube('.js-video-item');
