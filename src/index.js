@@ -1,9 +1,11 @@
 import './scss/index.scss';
 
-import LazyLoadYouTube from './js/script';
+export { default as LazyLoadYouTube } from './js/script';
 
-// const lazyLoadYouTube = new LazyLoadYouTube();
+// import LazyLoadYouTube from './js/script';
+
+// console.log(LazyLoadYouTube);
+// new LazyLoadYouTube('.js-video-item');
 
 // lazyLoadYouTube.stopVideo();
 
-export default LazyLoadYouTube;

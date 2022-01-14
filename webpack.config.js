@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
-const fileName = ext => isDev ? `[name].${ext}` : `script.${ext}`;
+const fileName = ext => isDev ? `[index].${ext}` : `index.${ext}`;
 
 module.exports = () => ({
   context: path.resolve(__dirname, 'src'),
@@ -18,17 +18,16 @@ module.exports = () => ({
   mode: 'development',
   output: {
     filename: `${fileName('js')}`,
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'demo'),
     publicPath: '',
-    library: 'LazyLoadYouTube',
-    libraryExport: 'default',
-    libraryTarget: 'var',
-    umdNamedDefine: true,
-    globalObject: 'typeof self === \'undefined\' ? this : self',
+    library: {
+      name: 'LazyLoadYouTube',
+      type: 'umd',
+    }
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'demo'),
     open: true,
     compress: true,
     hot: true,
@@ -37,17 +36,29 @@ module.exports = () => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.html'),
-      filename: 'index.html'
+      template: path.resolve(__dirname, 'src/index.ejs'),
+      filename: 'index.html',
+      minify: false,
+      inject: false,
+      removeComments: false
     }),
     new MiniCssExtractPlugin({
       filename: `${fileName('css')}`
     }),
     new CopyWebpackPlugin({
-      patterns: [{
-        from: path.resolve(__dirname, 'src/img'),
-        to: path.resolve(__dirname, 'dist/img')
-      }]
+      patterns: [
+          {
+          from: path.resolve(__dirname, 'demo/index.css'),
+          to: path.resolve(__dirname, 'dist')
+        },
+        {
+          from: path.resolve(__dirname, 'demo/index.js'),
+          to: path.resolve(__dirname, 'dist')
+        },
+        {
+          from: path.resolve(__dirname, 'src/img'),
+          to: path.resolve(__dirname, 'demo/img')
+        }]
     })
 
   ],
@@ -56,6 +67,13 @@ module.exports = () => ({
       {
         test: /\.html$/i,
         loader: 'html-loader',
+        options: {
+          sources: false,
+          minimize: {
+            removeComments: false,
+            collapseWhitespace: false,
+          },
+        },
       },
       {
         test: /\.css$/i,

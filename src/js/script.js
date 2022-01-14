@@ -1,15 +1,15 @@
-export default class LazyLoadYouTube {
+class LazyLoadYouTube {
 
     constructor(selector, options) {
 
         const defaultOptions = {
             button: `
-              <svg height="100%" viewBox="0 0 68 48" width="100%" fill="#000">
-                  <path
-                  d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z">
-                  </path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
-              </svg>`,
+            <svg height="100%" viewBox="0 0 68 48" width="100%" fill="#000">
+                <path
+                d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z">
+                </path>
+                <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+            </svg>`,
             imageBg: true,
             qualityBg: 'hqdefault'
         }
@@ -61,9 +61,9 @@ export default class LazyLoadYouTube {
                         }
 
                         const DOMElementButton = `
-                          <button class="video__play js-video-play" aria-label="${this.buttonLabel}">${this.options.button}</button>
-                          ${showCaption()}
-                      `;
+                        <button class="video__play js-video-play" aria-label="${this.buttonLabel}">${this.options.button}</button>
+                        ${showCaption()}
+                    `;
                         item.innerHTML = DOMElementButton;
                     }
                 });
@@ -116,7 +116,6 @@ export default class LazyLoadYouTube {
     youtubeParser(url){
         const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
         const match = url.match(regExp);
-        console.log(match);
         if (match !== null) {
             return (match&&match[7].length==11)? match[7] : false;
         }
@@ -149,3 +148,5 @@ export default class LazyLoadYouTube {
     }
 
 }
+
+// window.LazyLoadYouTube = LazyLoadYouTube;
