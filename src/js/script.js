@@ -1,4 +1,4 @@
-class LazyLoadYouTube {
+export default class LazyLoadYouTube {
 
     constructor(selector, options) {
 

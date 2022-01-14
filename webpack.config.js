@@ -36,24 +36,23 @@ module.exports = () => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.ejs'),
+      template: path.resolve(__dirname, 'src/index.html'),
       filename: 'index.html',
       minify: false,
-      inject: false,
       removeComments: false
     }),
     new MiniCssExtractPlugin({
-      filename: `${fileName('css')}`
+      filename: `style.css`
     }),
     new CopyWebpackPlugin({
       patterns: [
           {
-          from: path.resolve(__dirname, 'demo/index.css'),
-          to: path.resolve(__dirname, 'dist')
+          from: path.resolve(__dirname, 'demo/style.css'),
+          to: path.resolve(__dirname, 'css/index.css')
         },
         {
           from: path.resolve(__dirname, 'demo/index.js'),
-          to: path.resolve(__dirname, 'dist')
+          to: path.resolve(__dirname, '')
         },
         {
           from: path.resolve(__dirname, 'src/img'),

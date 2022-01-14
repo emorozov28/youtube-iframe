@@ -4,7 +4,6 @@ JavaScript library for lazy loading YouTube videos
 [![npm version](https://badge.fury.io/js/lazy-load-youtube.svg)](https://www.npmjs.com/package/lazy-load-youtube)
 [![](https://data.jsdelivr.com/v1/package/npm/lazy-load-youtube/badge)](https://www.jsdelivr.com/package/npm/lazy-load-youtube)
 
-## DEMO
  [Demo](https://emorozov.top/app/youtube-iframe/ )
 
 ## Working with the library
@@ -39,13 +38,8 @@ You can also add a caption to a video by adding a tag with a` video__caption` cl
 ```
 
 ## Start
-To get started, download the library and connect it to HTML and call it below, specifying the page as the parameter `.js-video-item`
-```javascript
-<script src="script.js"></script>
-<script>
-    new LazyLoadYouTube('.js-video-item');
-</script>
-```
+To get started, download the library  and connect it to HTML and call it below, specifying the page as the parameter `.js-video-item`
+
 Or import into your project
 ```javascript
 import LazyLoadYouTube from 'lazy-load-youtube';
