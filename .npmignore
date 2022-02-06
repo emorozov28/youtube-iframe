@@ -1,7 +1,9 @@
+dist/
 node_modules/
 src/
-demo/
+.babelrc
 package.json
 package-lock.json
-pastcss.config.js
+postcss.config.js
+webpack.config.js
 .DS_Store

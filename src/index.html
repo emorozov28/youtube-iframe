@@ -3,18 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lazy-load-youtube</title>
-    <meta name="title" content="YouTube Iframe" />
+    <meta property="og:title" content="lazy-load-youtube" />
     <meta name="description" content="lazy-load-youtube - a library for lazy load of youtube videos on your page">
+    <meta property="og:description" content="lazy-load-youtube - a library for lazy load of youtube videos on your page" />
     <meta name="keywords" content="YouTube Iframe, lazy-load, youtube, iframe, video, video-load, video-lazy" />
     <meta property="og:url" content="https://emorozov.top/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="lazy-load-youtube" />
-    <meta property="og:description" content="lazy-load-youtube - a library for lazy load of youtube videos on your page" />
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <meta name="robots" content="index, follow">
     <style>
         .container {
             max-width: 960px;
@@ -67,7 +66,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <h1>Demo lazy-load-youtube</h1>
         <ul>
@@ -104,13 +102,13 @@
         </ul>
         <button class="button js-video-stop">Stop Video</button>
 
-    </div>
-
-    <!-- <script type="module">
-        import LazyLoadYouTube from './index.js';
-        const lazyLoadYouTube = new LazyLoadYouTube('.js-video-item');
-        lazyLoadYouTube.stopVideo();
-    </script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const lazyLoadYouTube = new LazyLoadYouTube('.js-video-item');
+            lazyLoadYouTube.stopVideo();
+        });
+    </script>
+    
 </body>
 
 </html>

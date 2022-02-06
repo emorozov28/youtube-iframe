@@ -1,4 +1,5 @@
-export default class LazyLoadYouTube {
+// return LazyLoadYouTube class
+export class LazyLoadYouTube {
 
     constructor(selector, options) {
 
@@ -15,7 +16,7 @@ export default class LazyLoadYouTube {
         }
 
         this.options = { ...defaultOptions, ...options };
-        this.buttonLabel = this.options.buttonLabel ?? 'Play video';
+        this.buttonLabel = this.options.buttonLabel ? this.options.buttonLabel : 'Play video';
         this.selector = selector;
         this.stopVideoBtn = document.querySelectorAll('.js-video-stop');
         this.captionText = [];
@@ -148,5 +149,3 @@ export default class LazyLoadYouTube {
     }
 
 }
-
-// window.LazyLoadYouTube = LazyLoadYouTube;

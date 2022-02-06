@@ -1,12 +1,9 @@
-import './scss/index.scss';
+// import `.scss` files
+import './scss/style.scss';
 
-import LazyLoadYouTube from './js/script';
+// import UserList class
+import { LazyLoadYouTube as defaultExport } from './lib/lazy-load-youtube';
 
+export default defaultExport;
 
-// console.log(LazyLoadYouTube);
-// const lazyLoadYouTube = new LazyLoadYouTube('.js-video-item');
-
-// lazyLoadYouTube.stopVideo();
-
-export default LazyLoadYouTube;
-
+// lazy-load-youtube
