@@ -1,5 +1,5 @@
 {
-  "name": "youtube-iframe",
+  "name": "lazy-load-youtube",
   "version": "1.0.5",
   "description": "lazy-load-youtube - a library for lazy load of youtube videos on your page",
   "main": "./dist/index.js",
