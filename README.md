@@ -56,8 +56,8 @@ new LazyLoadYouTube('.js-video-item');
 ```
 or
 ```html
-<link href="index.css" rel="stylesheet">
-<script defer src="index.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.5/index.css" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.5/index.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
