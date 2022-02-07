@@ -15,8 +15,7 @@ module.exports = {
         libraryTarget: 'umd',
         libraryExport: 'default',
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js',
-        globalObject: 'this'
+        filename: 'index.js'
     },
     devServer: {
         port: 8080,
@@ -39,8 +38,9 @@ module.exports = {
             {
                 from: path.resolve(__dirname, 'src/img'),
                 to: path.resolve(__dirname, 'dist/img')
-            }]
-        }),
+            }
+        ]
+        })
     ],
     module: {
         rules: [

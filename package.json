@@ -2,29 +2,30 @@
   "name": "youtube-iframe",
   "version": "1.0.5",
   "description": "lazy-load-youtube - a library for lazy load of youtube videos on your page",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "start": "cross-env NODE_ENV=development webpack serve --mode development",
-    "build": "cross-env NODE_ENV=production webpack --mode production",
-    "clear": "cross-env NODE_ENV=production webpack --mode production"
+    "build": "rimraf dist/ && cross-env NODE_ENV=production webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/emorozov28/youtube-iframe.git"
   },
-  "keywords": [ 
+  "keywords": [
     "YouTube Iframe",
     "lazy-load",
     "youtube",
     "iframe",
     "video",
     "video-load",
-    "video-lazy"],
+    "video-lazy"
+  ],
   "author": "Eugene Morozov",
   "browserslist": [
     "> 1%",
-    "last 3 version"
+    "last 3 version",
+    "not ie <= 8"
   ],
   "license": "ISC",
   "bugs": {
@@ -46,6 +47,7 @@
     "node-sass": "^7.0.1",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.3.1",
+    "rimraf": "^3.0.2",
     "sass-loader": "^12.4.0",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
