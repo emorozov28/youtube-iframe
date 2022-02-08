@@ -7,41 +7,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
-module.exports = {
+const config = {
     entry: './src/index.js',
     mode: 'production',
-    output: {
-        library: 'LazyLoadYouTube',
-        libraryTarget: 'umd',
-        libraryExport: 'default',
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js'
-    },
-    devServer: {
-        port: 8080,
-        historyApiFallback: true,
-        open: true,
-        compress: true,
-        hot: true
-    },
+    output: {},
     devtool: isProd ? false : 'source-map',
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-            filename: 'index.html',
-            minify: false
-        }),
-        new MiniCssExtractPlugin({filename: `index.css`}),
-        new CopyWebpackPlugin({
-            patterns: [
-            {
-                from: path.resolve(__dirname, 'src/img'),
-                to: path.resolve(__dirname, 'dist/img')
-            }
-        ]
-        })
-    ],
+    plugins: [],
     module: {
         rules: [
             {
@@ -63,3 +34,56 @@ module.exports = {
         ]
     }
 };
+
+const configDev = {
+    ...config,
+    output: {
+        library: 'LazyLoadYouTube',
+        libraryTarget: 'umd',
+        libraryExport: 'default',
+        path: path.resolve(__dirname, 'demo'),
+        filename: 'index.js'
+    },
+    devServer: {
+        port: 8080,
+        historyApiFallback: true,
+        open: true,
+        compress: true,
+        hot: true
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/index.html'),
+            filename: 'index.html',
+            minify: false
+        }),
+        new MiniCssExtractPlugin({filename: `index.css`}),
+        new CopyWebpackPlugin({
+            patterns: [
+            {
+                from: path.resolve(__dirname, 'src/img'),
+                to: path.resolve(__dirname, 'demo/img')
+            }
+        ]
+        })
+    ],
+}
+
+const configProd = {
+    ...config,
+    output: {
+        library: 'LazyLoadYouTube',
+        libraryTarget: 'umd',
+        libraryExport: 'default',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js'
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({filename: `index.css`}),
+    ],
+}
+
+
+module.exports = [configDev, configProd];

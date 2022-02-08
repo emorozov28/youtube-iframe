@@ -1,4 +1,4 @@
-dist/
+demo/
 node_modules/
 src/
 .babelrc
