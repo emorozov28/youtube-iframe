@@ -57,11 +57,11 @@ new LazyLoadYouTube('.js-video-item');
 #### CDN
 CSS
 ```html
-<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/index.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/dist/index.css" rel="stylesheet">
 ```
 JS
 ```html
-<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/index.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/dist/index.js"></script>
 ```
 HTML
 ```html
