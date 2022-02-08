@@ -42,11 +42,11 @@ To get started, download the `npm i lazy-load-youtube` library and import it int
 Or import into your project
 #### css
 ```css
-@import 'lazy-load-youtube';
+@import 'lazy-load-youtube/dist';
 ```
 ```javascript
 or connect styles in js
-import 'lazy-load-youtube/index.css';
+import 'lazy-load-youtube/dist/index.css';
 ```
 #### js
 ```javascript
@@ -57,11 +57,11 @@ new LazyLoadYouTube('.js-video-item');
 #### CDN
 CSS
 ```html
-<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.5/index.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/index.css" rel="stylesheet">
 ```
 JS
 ```html
-<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.5/index.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/index.js"></script>
 ```
 HTML
 ```html

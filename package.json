@@ -1,6 +1,6 @@
 {
   "name": "lazy-load-youtube",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "lazy-load-youtube - a library for lazy load of youtube videos on your page",
   "main": "./dist/index.js",
   "scripts": {
