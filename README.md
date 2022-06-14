@@ -57,11 +57,11 @@ new LazyLoadYouTube('.js-video-item');
 #### CDN
 CSS
 ```html
-<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/dist/index.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.7/dist/index.css" rel="stylesheet">
 ```
 JS
 ```html
-<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.6/dist/index.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.7/dist/index.js"></script>
 ```
 HTML
 ```html
@@ -130,3 +130,6 @@ new LazyYouTubeLoad({
 | buttonLabel | string | Play video | For screen readers | --- |
 | imageBg | boolean | true | Background image | --- |
 | qualityBg | boolean | hqdefault | Image quality | hqdefault, mqdefault, sddefault, maxresdefault |
+
+
+### If you have any questions or wishes, write - https://github.com/emorozov28/youtube-iframe/issues
