@@ -29,7 +29,6 @@ export class LazyLoadYouTube {
         const selector = document.querySelectorAll(this.selector);
 
         if (selector && !selector.length) {
-            console.error(`Selector "${this.selector}" not found`);
             return;
         }
 
