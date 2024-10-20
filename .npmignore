@@ -2,6 +2,7 @@ demo/
 node_modules/
 src/
 .babelrc
+.idea
 package.json
 package-lock.json
 postcss.config.js
