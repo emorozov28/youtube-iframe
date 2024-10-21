@@ -24,7 +24,7 @@
             text-align: center;
             font-size: 40px;
             font-family: sans-serif;
-            margin-bottom: 10px;
+            margin-bottom: 50px;
         }
 
         ul {
@@ -79,35 +79,37 @@
 <body>
     <div class="container">
         <h1>Demo lazy-load-youtube</h1>
-        <a href="https://www.linkedin.com/in/evgenmorozov/" target="_blank" class="author">Author - <span>Eugene Morozov</span></a>
+        <!-- <a href="https://www.linkedin.com/in/emorozov28/" target="_blank" class="author">Author - <span>Eugene Morozov</span></a> -->
         <ul>
             <li>
-                <div class="video__wrap">
-                    <div class="video__item js-video-item" data-video-link="https://www.youtube.com/watch?v=Kt-tLuszKBA&t=814s">
-                        <span class="video__caption js-video-caption">Awesome Mix</span>
-                        <button class="video__play js-video-play"></button>
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem js-video-item"
+                        data-youtube-video-link="https://www.youtube.com/watch?v=Kt-tLuszKBA&t=814s">
+                        <span class="YouTubeVideoTitle">Awesome Mix</span>
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
                     </div>
                 </div>
             </li>
             <li>
-                <div class="video__wrap">
-                    <div class="video__item js-video-item" data-video-link="https://youtu.be/Gs069dndIYk">
-                        <button class="video__play js-video-play"></button>
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem js-video-item" data-youtube-video-link="https://youtu.be/Gs069dndIYk">
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
                     </div>
                 </div>
             </li>
             <li>
-                <div class="video__wrap">
-                    <div class="video__item js-video-item" data-video-link="https://youtu.be/Y_plhk1FUQA?t=8269"
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem js-video-item"
+                        data-youtube-video-link="https://youtu.be/Y_plhk1FUQA?t=8269"
                             style="background-image: url(img/intro.png);">
-                        <button class="video__play js-video-play"></button>
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
                     </div>
                 </div>
             </li>
             <li>
-                <div class="video__wrap">
-                    <div class="video__item js-video-item" data-video-link="Y_plhk1FUQA">
-                        <button class="video__play js-video-play"></button>
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem js-video-item" data-youtube-video-link="Y_plhk1FUQA">
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
                     </div>
                 </div>
             </li>
@@ -115,9 +117,12 @@
         <button class="button js-video-stop">Stop Video</button>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function(){
+        document.addEventListener('DOMContentLoaded', function() {
+            const stopVideo = document.querySelector('.js-video-stop');
+
             const lazyLoadYouTube = new LazyLoadYouTube('.js-video-item');
-            lazyLoadYouTube.stopVideo();
+
+            stopVideo.addEventListener('click', lazyLoadYouTube.stopVideoPlay);
         });
     </script>
     
