@@ -18,7 +18,9 @@ npm install lazy-load-youtube
 ```
 #### css
 ```css
-@import 'lazy-load-youtube/dist';
+@import '~lazy-load-youtube/dist/index.css';
+//or
+@import '/node_modules/lazy-load-youtube/dist/index.css';
 ```
 ```javascript
 // or connect styles in js
