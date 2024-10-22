@@ -16,15 +16,12 @@ To get started, you can install the package using npm or include it directly int
 ```bash
 npm install lazy-load-youtube
 ```
-## Start
-To get started, download the `npm i lazy-load-youtube` library and import it into your project
-Or import into your project
 #### css
 ```css
 @import 'lazy-load-youtube/dist';
 ```
 ```javascript
-or connect styles in js
+// or connect styles in js
 import 'lazy-load-youtube/dist/index.css';
 ```
 #### js
@@ -76,8 +73,7 @@ If necessary, you can also insert your own "background" for the video:
 ```
 
 ### Stop video
-```
-Calling the `stopVideo` method
+Calling the `stopVideoPlay` method
 ```javascript
  document.addEventListener('DOMContentLoaded', function() {
     const stopVideo = document.querySelector('.jsYouTubeVideoStop');
