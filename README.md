@@ -1,122 +1,108 @@
 # Lazy-load YouTube Iframe
-JavaScript library for lazy loading YouTube videos
+A lightweight JavaScript library for lazy loading YouTube videos.
 
-[![npm version](https://badge.fury.io/js/lazy-load-youtube.svg)](https://www.npmjs.com/package/lazy-load-youtube)
+[![npm version](https://badge.fury.io/js/lazy-load-youtube.svg)](https://www.npmjs.com/package/lazy-load-youtube)  
 [![](https://data.jsdelivr.com/v1/package/npm/lazy-load-youtube/badge)](https://www.jsdelivr.com/package/npm/lazy-load-youtube)
 
- [Demo](https://emorozov.top/app/youtube-iframe/ )
+[Demo](https://emorozov28.github.io/youtube-iframe/demo/index.html)
 
-## Working with the library
-Place html markup in your project:
-```html
-<div class="video__wrap">
-    <div class="video__item js-video-item" data-video-link="https://youtu.be/Kt-tLuszKBA">
-        <button class="video__play js-video-play"></button>
-    </div>
-</div>
+## Overview
+`lazy-load-youtube` provides an easy way to load YouTube videos only when they are requested, improving page performance by reducing initial load times.
+
+## Installation
+To get started, you can install the package using npm or include it directly into your project using a CDN.
+
+### Installation via npm
+```bash
+npm install lazy-load-youtube
 ```
-In the attribute `data-video-link`, you need to insert a link to the YouTube video or specify an id
-Example:
-```html
- - https://www.youtube.com/watch?v=Y_plhk1FUQA&t=8278s  <-link video
- - https://youtu.be/Y_plhk1FUQA  <-link video
- - Y_plhk1FUQA  <-id video
- ```
-
-If necessary, you can also insert your own "placeholder" for the video:
-```html 
-<div class="video__item js-video-item" data-video-link="..." 
-    style="background-image: url (img/intro.png);">
-```
-
-You can also add a caption to a video by adding a tag with a` video__caption` class and a `js-video-caption` :
-```html 
-<div class="video__item js-video-item" data-video-link="...">
-    <span class="video__caption js-video-caption">Your text</span>
-    <button class="video__play js-video-play"></button>
-</div>
-```
-
-## Start
-To get started, download the `npm i lazy-load-youtube` library and import it into your project
-Or import into your project
 #### css
 ```css
-@import 'lazy-load-youtube/dist';
+@import '~lazy-load-youtube/dist/index.css';
+//or
+@import '/node_modules/lazy-load-youtube/dist/index.css';
 ```
 ```javascript
-or connect styles in js
+// or connect styles in js
 import 'lazy-load-youtube/dist/index.css';
 ```
 #### js
 ```javascript
 import LazyLoadYouTube from 'lazy-load-youtube';
 
-new LazyLoadYouTube('.js-video-item');
+new LazyLoadYouTube('.jsYouTubeVideoItem');
 ```
 #### CDN
 CSS
 ```html
-<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.7/dist/index.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.0/dist/index.css" rel="stylesheet">
 ```
 JS
 ```html
-<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.0.7/dist/index.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.0/dist/index.js"></script>
 ```
 HTML
 ```html
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        new LazyLoadYouTube('.js-video-item');
+     document.addEventListener('DOMContentLoaded', function() {
+        const lazyLoadYouTube = new LazyLoadYouTube('.jsYouTubeVideoItem');
     });
 </script>
 ```
-### Stop video
-Create a button with class `js-video-stop`
+## Working with the library
+Place html markup in your project:
 ```html
-<button class="js-video-stop">Stop Video</button>
+<div class="YouTubeVideoContainer">
+    <div class="YouTubeVideoItem jsYouTubeVideoItem" data-youtube-video-link="Y_plhk1FUQA">
+        <button class="YouTubePlayButton" data-youtube-video-button></button>
+    </div>
+</div>
 ```
-Calling the `stopVideo` method
+In the attribute `data-video-link`, you need to insert a link to the YouTube video or specify an id
+Example:
+```html
+ - https://www.youtube.com/watch?v=Y_plhk1FUQA&t=8278s  <!-- full link -->
+ - https://youtu.be/Y_plhk1FUQA  <!-- short link -->
+ - Y_plhk1FUQA  <!-- video ID -->
+ ```
+
+If necessary, you can also insert your own "background" for the video:
+```html 
+<div class="YouTubeVideoItem jsYouTubeVideoItem"
+    data-youtube-video-link="..."
+    style="background-image: url(img/intro.png);">
+</div>
+```
+
+### Stop video
+Calling the `stopVideoPlay` method
 ```javascript
-const lazyLoadYouTube = new LazyLoadYouTube('.js-video-item');
-lazyLoadYouTube.stopVideo();
+ document.addEventListener('DOMContentLoaded', function() {
+    const stopVideo = document.querySelector('.jsYouTubeVideoStop');
+    const lazyLoadYouTube = new LazyLoadYouTube('.jsYouTubeVideoItem');
+
+    stopVideo.addEventListener('click', lazyLoadYouTube.stopVideoPlay);
+});
 ```
 
 ## Parameters
 
-### button
+### buttonContent
 Changing the content of the launch button
 ```javascript
-new LazyLoadYouTube('.js-video-item', {
-    button: '<svg>...</svg>'
-});
-```
-Button name
-`default value - Play video`
-```javascript
-new LazyLoadYouTube('.js-video-item', {
-    buttonLabel: 'Play'
+new LazyLoadYouTube('.jsYouTubeVideoItem', {
+    buttonContent: '<svg>...</svg>'
 });
 ```
 
-### bgImage
-
-Remove background image
-`default value - true`
-```javascript
-new LazyLoadYouTube('.js-video-item', {
-    imageBg: false
-});
-```
-
-### qualityBg
+### customBackgroundQuality
 
 Change the quality of the background image
 
 `default value - hqdefault`
 ```javascript
-new LazyYouTubeLoad({
-    qualityBg: 'hqdefault'
+new LazyYouTubeLoad('.jsYouTubeVideoItem', {
+    customBackgroundQuality: 'hqdefault'
 });
 ```
 + For high quality - `"hqdefault"`
@@ -126,10 +112,8 @@ new LazyYouTubeLoad({
 
 | Name | Type | Default | Description | Extra options |
 | --- | --- | --- | --- | --- |
-| button | string | svg | Button content | --- |
-| buttonLabel | string | Play video | For screen readers | --- |
-| imageBg | boolean | true | Background image | --- |
-| qualityBg | boolean | hqdefault | Image quality | hqdefault, mqdefault, sddefault, maxresdefault |
+| buttonContent | string | HTMLElement | The content of the play button | --- |
+| customBackgroundQuality | string | hqdefault | The quality of the background image | hqdefault, mqdefault, sddefault, maxresdefault |
 
 
 ### If you have any questions or wishes, write - https://github.com/emorozov28/youtube-iframe/issues
