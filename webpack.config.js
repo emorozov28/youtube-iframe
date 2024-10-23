@@ -1,7 +1,5 @@
 const path = require('path');
-const {
-    CleanWebpackPlugin
-} = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -13,22 +11,24 @@ const getPlugins = (isDev) => {
     const plugins = [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: `index.css`
-        })
+            filename: `index.css`,
+        }),
     ];
 
     if (isDev) {
         plugins.push(
             new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, './src/index.html'),
+                template: path.resolve(__dirname, './src/core/index.html'),
                 filename: 'index.html',
-                minify: false
+                minify: false,
             }),
             new CopyWebpackPlugin({
-                patterns: [{
-                    from: path.resolve(__dirname, 'src/img'),
-                    to: path.resolve(__dirname, 'demo/img')
-                }]
+                patterns: [
+                    {
+                        from: path.resolve(__dirname, 'src/img'),
+                        to: path.resolve(__dirname, 'demo/core/img'),
+                    },
+                ],
             })
         );
     }
@@ -37,14 +37,18 @@ const getPlugins = (isDev) => {
 };
 
 const baseConfig = {
-    entry: './src/index.ts',
+    entry: './src/core/index.ts',
     mode: isProd ? 'production' : 'development',
     devtool: isProd ? false : 'source-map',
     resolve: {
         extensions: ['.ts', '.js'],
+        alias: {
+          '@src': path.resolve(__dirname, 'src'),
+        },
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 use: 'ts-loader',
@@ -56,28 +60,23 @@ const baseConfig = {
             },
             {
                 test: /\.(s[ac]ss|css)$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader',
-                ],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
             },
         ],
     },
 };
 
-const configDev = {
+const configCoreDev = {
     ...baseConfig,
     output: {
         library: 'LazyLoadYouTube',
         libraryTarget: 'umd',
         libraryExport: 'default',
-        path: path.resolve(__dirname, 'demo'),
+        path: path.resolve(__dirname, 'demo/core'),
         filename: 'index.js',
     },
     devServer: {
-        port: 8080,
+        port: 8081,
         historyApiFallback: true,
         open: true,
         compress: true,
@@ -86,16 +85,16 @@ const configDev = {
     plugins: getPlugins(true),
 };
 
-const configProd = {
+const configCoreProd = {
     ...baseConfig,
     output: {
         library: 'LazyLoadYouTube',
         libraryTarget: 'umd',
         libraryExport: 'default',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist/core'),
         filename: 'index.js',
     },
     plugins: getPlugins(false),
 };
 
-module.exports = [configDev, configProd];
+module.exports = [configCoreDev, configCoreProd];

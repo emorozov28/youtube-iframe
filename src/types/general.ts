@@ -6,6 +6,6 @@ export enum BackgroundQuality {
 }
 
 export interface IOptionsConfig {
-    buttonContent?: string; 
+    buttonContent?: string;
     customBackgroundQuality?: BackgroundQuality;
 }

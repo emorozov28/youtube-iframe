@@ -1,58 +1,66 @@
 {
-  "name": "lazy-load-youtube",
-  "version": "1.1.0",
-  "description": "lazy-load-youtube - a library for lazy load of youtube videos on your page",
-  "main": "./dist/index.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "start": "cross-env NODE_ENV=development webpack serve --mode development",
-    "build": "rimraf dist/ demo/ && cross-env NODE_ENV=production webpack --mode production"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emorozov28/youtube-iframe.git"
-  },
-  "keywords": [
-    "YouTube Iframe",
-    "lazy-load",
-    "youtube",
-    "iframe",
-    "video",
-    "video-load",
-    "video-lazy"
-  ],
-  "author": "Eugene Morozov",
-  "browserslist": [
-    "> 1%",
-    "last 3 version",
-    "not ie <= 8"
-  ],
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/emorozov28/youtube-iframe/issues"
-  },
-  "homepage": "https://github.com/emorozov28/youtube-iframe#readme",
-  "devDependencies": {
-    "@babel/core": "^7.25.8",
-    "@babel/preset-env": "^7.25.8",
-    "autoprefixer": "^10.4.20",
-    "babel-loader": "^9.2.1",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^12.0.2",
-    "cross-env": "^7.0.3",
-    "css-loader": "^7.1.2",
-    "cssnano": "^7.0.6",
-    "html-webpack-plugin": "^5.6.2",
-    "mini-css-extract-plugin": "^2.9.1",
-    "postcss-loader": "^8.1.1",
-    "postcss-preset-env": "^10.0.7",
-    "rimraf": "^6.0.1",
-    "sass": "^1.80.3",
-    "sass-loader": "^16.0.2",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.6.3",
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0"
-  }
+    "name": "lazy-load-youtube",
+    "version": "1.1.0",
+    "description": "lazy-load-youtube - a library for lazy load of youtube videos on your page",
+    "main": "./dist/index.js",
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development webpack serve --mode development",
+        "build": "rimraf dist/core demo/core && cross-env NODE_ENV=production webpack --mode production",
+        "lint": "eslint ./src/",
+        "lint-fix": "eslint . --fix ./src/",
+        "format": "prettier --write ./src/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emorozov28/youtube-iframe.git"
+    },
+    "keywords": [
+        "YouTube Iframe",
+        "lazy-load",
+        "youtube",
+        "iframe",
+        "video",
+        "video-load",
+        "video-lazy"
+    ],
+    "author": "Eugene Morozov",
+    "browserslist": [
+        "> 1%",
+        "last 3 version",
+        "not ie <= 8"
+    ],
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/emorozov28/youtube-iframe/issues"
+    },
+    "homepage": "https://github.com/emorozov28/youtube-iframe#readme",
+    "devDependencies": {
+        "@babel/core": "^7.25.8",
+        "@babel/preset-env": "^7.25.8",
+        "@eslint/js": "^9.13.0",
+        "autoprefixer": "^10.4.20",
+        "babel-loader": "^9.2.1",
+        "clean-webpack-plugin": "^4.0.0",
+        "copy-webpack-plugin": "^12.0.2",
+        "cross-env": "^7.0.3",
+        "css-loader": "^7.1.2",
+        "cssnano": "^7.0.6",
+        "eslint": "^9.13.0",
+        "eslint-config-prettier": "^9.1.0",
+        "globals": "^15.11.0",
+        "html-webpack-plugin": "^5.6.2",
+        "mini-css-extract-plugin": "^2.9.1",
+        "postcss-loader": "^8.1.1",
+        "postcss-preset-env": "^10.0.7",
+        "prettier": "^3.3.3",
+        "rimraf": "^6.0.1",
+        "sass": "^1.80.3",
+        "sass-loader": "^16.0.2",
+        "ts-loader": "^9.5.1",
+        "typescript": "^5.6.3",
+        "typescript-eslint": "^8.11.0",
+        "webpack": "^5.95.0",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^5.1.0"
+    }
 }

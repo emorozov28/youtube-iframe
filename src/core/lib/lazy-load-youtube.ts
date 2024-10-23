@@ -1,4 +1,4 @@
-import {IOptionsConfig, BackgroundQuality} from '../types';
+import {IOptionsConfig, BackgroundQuality} from '@src/types';
 
 const _DEFAULT_OPTIONS = {
     buttonContent: `
@@ -8,8 +8,8 @@ const _DEFAULT_OPTIONS = {
                 </path>
                 <path d="M 45,24 27,14 27,34" fill="#fff"></path>
             </svg>`,
-    customBackgroundQuality: BackgroundQuality.HQ_DEFAULT
-}
+    customBackgroundQuality: BackgroundQuality.HQ_DEFAULT,
+};
 
 export class LazyLoadYouTube {
     videoItem: NodeListOf<HTMLElement>;
@@ -32,31 +32,27 @@ export class LazyLoadYouTube {
     }
 
     private showVideoInfo() {
-        this.videoItem.forEach(video => {
+        this.videoItem.forEach((video) => {
             const videoHref = video.getAttribute('data-youtube-video-link');
             const videoId = videoHref && this.youtubeParser(videoHref);
-            const videoButton = video.querySelector<HTMLElement>('[data-youtube-video-button]');
-            
+
             if (videoId) {
                 video.setAttribute('data-youtube-video-id', videoId);
                 this.isBgImage(video, videoId);
                 this.setVideoButton(video);
             }
-
         });
     }
 
     private setVideoButton(video: HTMLElement): void {
         const videoButton = video.querySelector<HTMLElement>('[data-youtube-video-button]');
         if (videoButton) {
-            videoButton.innerHTML = typeof this.options.buttonContent === 'string' 
-                ? this.options.buttonContent!
-                : _DEFAULT_OPTIONS.buttonContent;
+            videoButton.innerHTML = typeof this.options.buttonContent === 'string' ? this.options.buttonContent! : _DEFAULT_OPTIONS.buttonContent;
         }
     }
 
     private listeners(): void {
-        this.videoItem.forEach(video => { 
+        this.videoItem.forEach((video) => {
             video?.addEventListener('click', (event) => this.playVideo(event, video));
         });
     }
@@ -66,10 +62,10 @@ export class LazyLoadYouTube {
         this.stopVideoPlay();
 
         const videoHref = video.getAttribute('data-youtube-video-link');
-        const videoId = videoHref && this.youtubeParser(videoHref); 
+        const videoId = videoHref && this.youtubeParser(videoHref);
 
         video.setAttribute('data-youtube-video-active', 'true');
-    
+
         this.hideChildrenElement(video);
 
         if (videoId) {
@@ -82,29 +78,28 @@ export class LazyLoadYouTube {
         if (!video) return;
         const childrenElements = Array.from(video.children) as HTMLElement[];
 
-        childrenElements.forEach(item => {
+        childrenElements.forEach((item) => {
             item.setAttribute('data-youtube-video-item', 'true');
-            item.style.cssText = 'opacity: 0; visibility: hidden;'
+            item.style.cssText = 'opacity: 0; visibility: hidden;';
         });
-        
     }
 
     private showChildrenElement(video: HTMLElement): void {
         if (!video) return;
-        
+
         const childrenElements = Array.from(video.children) as HTMLElement[];
 
-        childrenElements.forEach(item => {
+        childrenElements.forEach((item) => {
             if (item.getAttribute('data-youtube-video-item')) {
                 item.removeAttribute('style');
                 item.removeAttribute('data-youtube-video-item');
             }
         });
-
     }
-    
+
     private youtubeParser(url: string): string {
-        const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        const regExp = /^.*((youtu\.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+
         const match = url.match(regExp);
         if (match !== null && match[7].length === 11) {
             return match[7];
@@ -113,14 +108,12 @@ export class LazyLoadYouTube {
     }
 
     private isBgImage(element: HTMLElement, videoId: string): void {
-
         if (!element.getAttribute('style')) {
             const backgroundQuality: BackgroundQuality =
-                (this.options.customBackgroundQuality &&
-                    Object.values(BackgroundQuality).includes(this.options.customBackgroundQuality))
+                this.options.customBackgroundQuality && Object.values(BackgroundQuality).includes(this.options.customBackgroundQuality)
                     ? this.options.customBackgroundQuality
                     : _DEFAULT_OPTIONS.customBackgroundQuality;
-            
+
             const youtubeImgSrc = `https://i.ytimg.com/vi/${videoId}/${backgroundQuality}.jpg`;
             element.style.backgroundImage = `url(${youtubeImgSrc})`;
         }
@@ -141,21 +134,11 @@ export class LazyLoadYouTube {
         return `https://www.youtube.com/embed/${id}${query}`;
     }
 
-    private isWebP(): Promise<boolean> {
-        return new Promise((resolve) => {
-            const webP = new Image();
-            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-
-            webP.onload = () => resolve(webP.height === 2);
-            webP.onerror = () => resolve(false);
-        });
-    }
-
     stopVideoPlay() {
         const videoActive = document.querySelectorAll('[data-youtube-video-active="true"]');
 
         if (videoActive.length) {
-            videoActive.forEach(video => {
+            videoActive.forEach((video) => {
                 const videoElement = video as HTMLElement;
                 const iframe = videoElement.querySelector('iframe');
                 iframe?.remove();
