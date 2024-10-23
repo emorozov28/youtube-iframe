@@ -2,7 +2,7 @@
 import './scss/style.scss';
 
 // import UserList class
-import { LazyLoadYouTube as defaultExport } from './lib/lazy-load-youtube';
+import {LazyLoadYouTube as defaultExport} from './lib/lazy-load-youtube';
 
 export default defaultExport;
 
