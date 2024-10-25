@@ -113,6 +113,7 @@ new LazyYouTubeLoad('.jsYouTubeVideoItem', {
 
 | Name | Type | Default | Description | Extra options |
 | --- | --- | --- | --- | --- |
+| onPlay | function | --- | Video launch event | --- |
 | buttonContent | string | HTMLElement | The content of the play button | --- |
 | customBackgroundQuality | string | hqdefault | The quality of the background image | hqdefault, mqdefault, sddefault, maxresdefault |
 
