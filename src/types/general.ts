@@ -8,4 +8,5 @@ export enum BackgroundQuality {
 export interface IOptionsConfig {
     buttonContent?: string; 
     customBackgroundQuality?: BackgroundQuality;
+    onPlay: (videoElement: HTMLElement) => void;
 }

@@ -8,7 +8,8 @@
     <title>lazy-load-youtube</title>
     <meta property="og:title" content="lazy-load-youtube" />
     <meta name="description" content="lazy-load-youtube - a library for lazy load of youtube videos on your page">
-    <meta property="og:description" content="lazy-load-youtube - a library for lazy load of youtube videos on your page" />
+    <meta property="og:description"
+        content="lazy-load-youtube - a library for lazy load of youtube videos on your page" />
     <meta name="keywords" content="YouTube Iframe, lazy-load, youtube, iframe, video, video-load, video-lazy" />
     <meta property="og:url" content="https://emorozov.top/" />
     <meta property="og:type" content="website" />
@@ -80,54 +81,59 @@
     <div class="container">
         <h1>Demo lazy-load-youtube</h1>
         <!-- <a href="https://www.linkedin.com/in/emorozov28/" target="_blank" class="author">Author - <span>Eugene Morozov</span></a> -->
-         <ul>
-             <li>
-                 <div class="YouTubeVideoContainer">
-                     <div class="YouTubeVideoItem jsYouTubeVideoItem"
-                         data-youtube-video-link="https://www.youtube.com/watch?v=Kt-tLuszKBA&t=814s">
-                         <span class="YouTubeVideoTitle">Awesome Mix</span>
-                         <button class="YouTubePlayButton" data-youtube-video-button></button>
-                     </div>
-                 </div>
-             </li>
-             <li>
-                 <div class="YouTubeVideoContainer">
-                     <div class="YouTubeVideoItem jsYouTubeVideoItem"
-                         data-youtube-video-link="https://youtu.be/U6cPjurCOmQ?si=i2Ck_I5JAm_cbUIr">
-                         <button class="YouTubePlayButton" data-youtube-video-button></button>
-                     </div>
-                 </div>
-             </li>
-             <li>
-                 <div class="YouTubeVideoContainer">
-                     <div class="YouTubeVideoItem jsYouTubeVideoItem"
-                         data-youtube-video-link="https://www.youtube.com/watch?v=7puYbUmeNxU&list=PLfP6i5T0-DkJGbF1_y-TUWSpgq6CgiFL5"
-                         style="background-image: url(img/intro.png);">
-                         <span class="YouTubeVideoTitle">Car Driving</span>
-                         <button class="YouTubePlayButton" data-youtube-video-button></button>
-                     </div>
-                 </div>
-             </li>
-             <li>
-                 <div class="YouTubeVideoContainer">
-                     <div class="YouTubeVideoItem jsYouTubeVideoItem" data-youtube-video-link="Y_plhk1FUQA">
-                         <button class="YouTubePlayButton" data-youtube-video-button></button>
-                     </div>
-                 </div>
-             </li>
-         </ul>
+        <ul>
+            <li>
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem jsYouTubeVideoItem"
+                        data-youtube-video-link="https://www.youtube.com/watch?v=Kt-tLuszKBA&t=814s">
+                        <span class="YouTubeVideoTitle">Awesome Mix</span>
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem jsYouTubeVideoItem"
+                        data-youtube-video-link="https://youtu.be/U6cPjurCOmQ?si=i2Ck_I5JAm_cbUIr">
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem jsYouTubeVideoItem"
+                        data-youtube-video-link="https://www.youtube.com/watch?v=7puYbUmeNxU&list=PLfP6i5T0-DkJGbF1_y-TUWSpgq6CgiFL5"
+                        style="background-image: url(img/intro.png);">
+                        <span class="YouTubeVideoTitle">Car Driving</span>
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="YouTubeVideoContainer">
+                    <div class="YouTubeVideoItem jsYouTubeVideoItem" data-youtube-video-link="Y_plhk1FUQA">
+                        <button class="YouTubePlayButton" data-youtube-video-button></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
         <button class="button jsYouTubeVideoStop">Stop Video</button>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const stopVideo = document.querySelector('.jsYouTubeVideoStop');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const stopVideo = document.querySelector('.jsYouTubeVideoStop');
 
-            const lazyLoadYouTube = new LazyLoadYouTube('.jsYouTubeVideoItem');
+                const lazyLoadYouTube = new LazyLoadYouTube('.jsYouTubeVideoItem', {
+                    onPlay: (videoElement) => {
+                        console.log('Play video', videoElement);
+                    }
+                });
 
-            stopVideo.addEventListener('click', lazyLoadYouTube.stopVideoPlay);
-        });
-    </script>
-    
+                stopVideo.addEventListener('click', lazyLoadYouTube.stopVideoPlay);
+
+            });
+        </script>
+
 </body>
 
 </html>

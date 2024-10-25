@@ -8,13 +8,6 @@ A lightweight JavaScript library for lazy loading YouTube videos.
 ## Overview
 `lazy-load-youtube` provides an easy way to load YouTube videos only when they are requested, improving page performance by reducing initial load times.
 
-## Installation
-To get started, you can install the package using npm or include it directly into your project using a CDN.
-
-### Installation via npm
-```bash
-npm install lazy-load-youtube
-```
 #### css
 ```css
 @import '~lazy-load-youtube/dist/index.css';
@@ -34,11 +27,11 @@ new LazyLoadYouTube('.jsYouTubeVideoItem');
 #### CDN
 CSS
 ```html
-<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.0/dist/index.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.1/dist/index.css" rel="stylesheet">
 ```
 JS
 ```html
-<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.0/dist/index.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.1/dist/index.js"></script>
 ```
 HTML
 ```html
@@ -91,6 +84,15 @@ Changing the content of the launch button
 ```javascript
 new LazyLoadYouTube('.jsYouTubeVideoItem', {
     buttonContent: '<svg>...</svg>'
+});
+```
+
+### onPlay
+```javascript
+const lazyLoadYouTube = new LazyLoadYouTube('.jsYouTubeVideoItem', {
+    onPlay: (videoElement) => {
+        console.log('Play video', videoElement);
+    }
 });
 ```
 
