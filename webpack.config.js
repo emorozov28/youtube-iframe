@@ -46,6 +46,14 @@ const baseConfig = {
           '@src': path.resolve(__dirname, 'src'),
         },
     },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          extractComments: false,
+        }),
+      ],
+    },
     module: {
         rules: [
             {

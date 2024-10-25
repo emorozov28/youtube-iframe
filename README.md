@@ -14,23 +14,17 @@ A lightweight JavaScript library for lazy loading YouTube videos.
 
 To get started, you can install the package using npm or include it directly into your project using a CDN.
 
-### Installation via npm
-
-```bash
-npm install lazy-load-youtube
-```
-
 #### css
 
 ```css
-@import '~lazy-load-youtube/dist/index.css';
+@import '~lazy-load-youtube/core/dist/index.css';
 //or
-@import '/node_modules/lazy-load-youtube/dist/index.css';
+@import '/node_modules/lazy-load-youtube/core/dist/index.css';
 ```
 
 ```javascript
 // or connect styles in js
-import 'lazy-load-youtube/dist/index.css';
+import 'lazy-load-youtube/core/dist/index.css';
 ```
 
 #### js
@@ -46,13 +40,13 @@ new LazyLoadYouTube('.jsYouTubeVideoItem');
 CSS
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.0/dist/index.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/lazy-load-youtube@2.0.0/core/dist/index.css" rel="stylesheet" />
 ```
 
 JS
 
 ```html
-<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@1.1.0/dist/index.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazy-load-youtube@2.0.0/core/dist/index.js"></script>
 ```
 
 HTML
